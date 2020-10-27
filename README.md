@@ -1,3 +1,6 @@
+<img src="https://i.ibb.co/5Gr2mFr/undraw-a-better-world-9xfd.png" alt="mulher em pé em frente a uma janela" border="0" width = "200" />
+
+
 # API - GET
 
 O projeto consiste de uma API simples que utiliza o método HTTP GET para listar e filtrar informações de três arquivos json com temas diferentes.
