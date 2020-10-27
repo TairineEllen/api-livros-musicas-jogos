@@ -4,6 +4,7 @@ const app = express();
 app.use(express.json());
 
 const jogos = require('./routes/routeJogos');
+const musicas = require('./routes/routeMusicas');
 
 app.use('/', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -16,5 +17,6 @@ app.use('/', (req, res, next) => {
 });
 
 app.use('/jogos', jogos);
+app.use('/musicas', musicas);
 
 module.exports = app;
