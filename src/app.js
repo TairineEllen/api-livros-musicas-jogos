@@ -3,6 +3,8 @@ const app = express();
 
 app.use(express.json());
 
+const jogos = require('./routes/routeJogos');
+
 app.use('/', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header(
@@ -12,5 +14,7 @@ app.use('/', (req, res, next) => {
   console.info('Nova requisicao realizada');
   next();
 });
+
+app.use('/jogos', jogos);
 
 module.exports = app;
