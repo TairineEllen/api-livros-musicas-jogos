@@ -90,9 +90,9 @@ const getRecord = (req, res) => {
     const record = allRecords(musics).map(record => ({
       album: record,
       musicas: musics.filter(music => music.album == record)
-    })).filter(record => record.album.toLowerCase() == name);
+    })).find(record => record.album.toLowerCase() == name);
     
-    record.length ? res.send(record) : res.status(404).send('Álbum não encontrado')  
+    record ? res.send(record) : res.status(404).send('Álbum não encontrado')  
        
   } catch (error) {
     res.status(424).send('Erro interno no servidor');    
