@@ -20,7 +20,7 @@ const allArtists = (arr) => {
   const listArtists = [];
   arr.forEach(music => {
     if (listArtists.indexOf(music.artista) === -1) {
-      listArtists.push(music.artista)
+      listArtists.push(music.artista);
     };
   });
 
@@ -44,26 +44,49 @@ const getAllArtists = (req, res) => {
 const getArtistById = (req, res) => {
   const id = req.params.id;
   const artists = allArtists(musics);
+
   try {
     const artistSelected = artists.find(artist => artist.id == id);
     if (artistSelected) {
       const musicsArtist = musics.filter(music => music.artista == artistSelected.artista);
       res.status(200).send({
-        artista: artistSelected,
+        artista: artistSelected.artista,
         musicas: musicsArtist
-      });        
+      });
     } else {
       res.status(424).send('Artista não encontrado')
-    }     
-    
+    };
+  } catch (error) {
+    res.status(424).send('Erro interno no servidor');
+  };
+};
+
+const allRecords = (arr) => {
+  const listRecords = [];
+  arr.forEach(music => {
+    if (listRecords.indexOf(music.album) === -1) {
+      listRecords.push(music.album)
+    }
+  })
+  return listRecords;
+};
+
+const getlAllRecords = (req, res) => {
+  try {
+    const records = allRecords(musics).map(record => ({
+      album: record,
+      musicas: musics.filter(music => music.album == record);
+    }));
+    res.status(200).send(records);
   } catch (error) {
     res.status(424).send('Erro interno no servidor');    
-  };
+  };  
 };
 
 module.exports = {
   getAllMusics,
   getMusicById,
   getAllArtists,
-  getArtistById
+  getArtistById,
+  getlAllRecords
 };

@@ -6,6 +6,7 @@ app.use(express.json());
 const jogos = require('./routes/routeJogos');
 const musicas = require('./routes/routeMusicas');
 const artistas = require('./routes/routeArtists');
+const albuns = require('./routes/routeRecords');
 
 app.use('/', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -20,5 +21,6 @@ app.use('/', (req, res, next) => {
 app.use('/jogos', jogos);
 app.use('/musicas', musicas);
 app.use('/artistas', artistas);
+app.use('/albuns', albuns);
 
 module.exports = app;
