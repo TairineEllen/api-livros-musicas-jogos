@@ -1,3 +1,4 @@
+const { all } = require('../app');
 const musics = require('../models/musicas.json');
 
 const getAllMusics = (req, res) => {
@@ -75,7 +76,7 @@ const getlAllRecords = (req, res) => {
   try {
     const records = allRecords(musics).map(record => ({
       album: record,
-      musicas: musics.filter(music => music.album == record);
+      musicas: musics.filter(music => music.album == record)
     }));
     res.status(200).send(records);
   } catch (error) {
@@ -83,10 +84,26 @@ const getlAllRecords = (req, res) => {
   };  
 };
 
+const getRecord = (req, res) => {
+  const name = req.params.nome;
+  try {
+    const record = allRecords(musics).map(record => ({
+      album: record,
+      musicas: musics.filter(music => music.album == record)
+    })).filter(record => record.album.toLowerCase() == name);
+    
+    record.length ? res.send(record) : res.status(404).send('Álbum não encontrado')  
+       
+  } catch (error) {
+    res.status(424).send('Erro interno no servidor');    
+  };
+};
+
 module.exports = {
   getAllMusics,
   getMusicById,
   getAllArtists,
   getArtistById,
-  getlAllRecords
+  getlAllRecords,
+  getRecord
 };
