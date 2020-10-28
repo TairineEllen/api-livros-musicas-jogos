@@ -3,6 +3,7 @@ const app = express();
 
 app.use(express.json());
 
+const index = require('./routes/index');
 const jogos = require('./routes/routeJogos');
 const musicas = require('./routes/routeMusicas');
 const artistas = require('./routes/routeArtists');
@@ -19,6 +20,7 @@ app.use('/', (req, res, next) => {
   next();
 });
 
+app.use('/', index);
 app.use('/jogos', jogos);
 app.use('/musicas', musicas);
 app.use('/artistas', artistas);
